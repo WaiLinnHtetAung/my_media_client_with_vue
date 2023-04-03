@@ -61,7 +61,7 @@
                                             <li><a href="index.html">Home</a></li>
                                             <li><a href="#">Category</a>
                                                 <ul class="submenu">
-                                                    <li v-for="(category,index) in categories" :key="index"><a href="#">{{category.title}}</a></li>
+                                                    <li v-for="(category,index) in categories" :key="index" @click="postByCategory(category.id)"><a href="#">{{category.title}}</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="about.html">About</a></li>
@@ -81,6 +81,13 @@
                                 </div>
                             </div>
 
+                            <div class="col-xl-2 col-lg-2 col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" @keyup.enter="search()" v-model="searchKey">
+                                    <button class="text-white bg-dark px-3 rounded-end" @click="search()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+
                             <!-- Mobile Menu -->
                         </div>
                     </div>
@@ -92,9 +99,43 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         name: 'NavBar',
         props : ['categories'],
+
+        data : () => ({
+            searchKey : '',
+        }),
+
+        methods : {
+            search() {
+                let key = {key : this.searchKey};
+
+                axios.post('http://localhost:8000/api/post-search', key).then((response) => {
+
+                    this.$router.push({
+                        name : 'homePage',
+                        query : {
+                            searchedPosts : response.data.posts
+                        },
+                    });
+                })
+            }, 
+
+            postByCategory(id) {
+                axios.post('http://localhost:8000/api/post-by-category', {id : id}).then((response) => {
+                    console.log(response)
+                    this.$router.push({
+                        name : 'homePage',
+                        query : {
+                            posts : 'this is post',
+                        }
+                    });
+                })
+            }
+            
+        }
 
     }
 </script>

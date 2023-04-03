@@ -5,7 +5,7 @@ export default {
     name: 'HomePage',
     components : {NavBar},
     data : () => ({
-        name : 'this is testing',
+        name : '',
         posts : [],
         categories : [],
     }),
@@ -21,11 +21,27 @@ export default {
             axios.get('http://localhost:8000/api/categories').then((response) => {
                 this.categories = response.data.categories;
             })
+        }, 
+
+        getSearchedPosts(searchedPosts) {
+            console.log(searchedPosts[0].title);
+        },
+        newsDetail(id) {
+            this.$router.push({
+                name: 'newsDetail',
+                query : {
+                    id: id,
+                }
+            });
         }
     },
 
     mounted() {
         this.getAllPost();
         this.getAllCategories();
+    },
+
+    created() {
+        console.log(this.$router.query);
     }
 }

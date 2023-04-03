@@ -1,5 +1,5 @@
 <template>
-    <NavBar :categories='categories'/>
+    <NavBar :categories='categories' />
     <!--  Recent Articles start -->
         <div class="recent-articles">
             <div class="container">
@@ -10,10 +10,10 @@
                             <div class="section-tittle mb-30"></div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-12">
                             <div class="recent-active dot-style d-flex dot-style">
-                                <div v-for="(post,index) in posts" :key="index" class="single-recent mb-100">
+                                <div v-for="(post,index) in posts" :key="index" class="single-recent mb-100" @click="newsDetail(post.id)" style="cursor:pointer;" title="Read details">
                                     <div class="what-img" style="width:20rem; height: 15rem;">
                                         <img :src="post.media[0].original_url" style="width:100%; height:100%;"  alt="" />
                                     </div>
