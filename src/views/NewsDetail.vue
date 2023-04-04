@@ -51,7 +51,7 @@
                             <!-- From -->
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <form class="form-contact contact_form mb-80" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                                    
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -74,10 +74,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group mt-3">
-                                            <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                                        <div class="form-group my-3">
+                                            <button class="btn button-contactForm boxed-btn" @click="$router.back()">Back</button>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>

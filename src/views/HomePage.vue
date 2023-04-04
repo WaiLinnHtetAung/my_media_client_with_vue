@@ -11,19 +11,17 @@
                         </div>
                     </div>
                     <div class="row" >
-                        <div class="col-12">
-                            <div class="recent-active dot-style d-flex dot-style">
-                                <div v-for="(post,index) in posts" :key="index" class="single-recent mb-100" @click="newsDetail(post.id)" style="cursor:pointer;" title="Read details">
-                                    <div class="what-img" style="width:20rem; height: 15rem;">
-                                        <img :src="post.media[0].original_url" style="width:100%; height:100%;"  alt="" />
-                                    </div>
-                                    <div class="what-cap">
-                                        <span class="color1">{{post.title}}</span>
-                                       
-                                        <h4>
-                                            <a href="#">{{post.description}}</a>
-                                        </h4>
-                                    </div>
+                        <div class="recent-active dot-style col-md-6 col-lg-4 col- dot-style"  v-for="(post,index) in posts" :key="index">
+                            <div class="single-recent mb-100" @click="newsDetail(post.id)" style="cursor:pointer;" title="Read details">
+                                <div class="what-img" style="width:20rem; height: 15rem;">
+                                    <img :src="post.media[0].original_url" style="width:100%; height:100%;"  alt="" />
+                                </div>
+                                <div class="what-cap">
+                                    <span class="color1">{{post.title}}</span>
+                                    
+                                    <h4>
+                                        <a href="#">{{post.description}}</a>
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +31,7 @@
         </div>
         <!--Recent Articles End -->
         <!--Start pagination -->
-        <div class="pagination-area pb-45 text-center">
+        <!-- <div class="pagination-area pb-45 text-center">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -63,7 +61,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- End pagination  -->
 </template>
 

@@ -58,7 +58,7 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a class="text-underlined" style="cursor: pointer;" @click="$router.push('/')">Home</a></li>
                                             <li><a href="#">Category</a>
                                                 <ul class="submenu">
                                                     <li v-for="(category,index) in categories" :key="index" @click="postByCategory(category.id)"><a href="#">{{category.title}}</a></li>
@@ -76,6 +76,7 @@
                                                     <li><a href="details.html">Categori Details</a></li>
                                                 </ul>
                                             </li>
+                                            <li><a class="text-underlined" style="cursor: pointer;" @click="$router.push('/login')">Login</a></li>
                                         </ul>
                                     </nav>
                                 </div>

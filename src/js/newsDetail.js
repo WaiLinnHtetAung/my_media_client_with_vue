@@ -21,7 +21,8 @@ import axios from 'axios';
                     this.post = response.data.post;
                     console.log(this.post.media);
                 })
-            }
+            },
+         
         },
         beforeMount() {
             this.post_id = this.$route.query.id;
