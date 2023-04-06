@@ -76,7 +76,8 @@
                                                     <li><a href="details.html">Categori Details</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a class="text-underlined" style="cursor: pointer;" @click="$router.push('/login')">Login</a></li>
+                                            <li v-if="$store.state.userStatus != 'true'"><a class="text-underlined" style="cursor: pointer;" @click="$router.push('/login')">Login</a></li>
+                                            <li v-else><a class="text-underlined" style="cursor: pointer;" @click="logout()">Logout</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -134,6 +135,11 @@
                         }
                     });
                 })
+            },
+
+            logout() {
+                this.$store.dispatch('setToken', '');
+                location.reload();
             }
             
         }

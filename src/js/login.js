@@ -9,7 +9,8 @@
             userData : {
                 email : '',
                 password : '',
-            }
+            },
+            loginStatus : true,
         }),
         computed: {
             ...mapGetters(['getToken', 'getUserData']),
@@ -24,7 +25,9 @@
                 axios.post('http://localhost:8000/api/login', this.userData).then((response) => {
                     if(response.data.token != null) {
                         this.storeUserData(response);
+                        this.$router.push('/homePage')
                     } else {
+                        this.loginStatus = false;
                         console.log('login error');
                     }
                 })
@@ -32,6 +35,7 @@
             storeUserData(data) {
                 this.$store.dispatch('setToken', data.data.token);
                 this.$store.dispatch('setUserData', data.data.user);
+                this.$store.dispatch('userStatus', 'true');
             },
             
         },

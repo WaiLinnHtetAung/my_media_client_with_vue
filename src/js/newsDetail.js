@@ -1,5 +1,6 @@
 import NavBar from '../views/NavBar.vue';
 import axios from 'axios';
+import { mapGetters } from 'vuex';
     export default {
         name : 'NewsDetail',
         components : {NavBar},
@@ -7,7 +8,12 @@ import axios from 'axios';
             categories : [],
             post_id : 0,
             post : [],
+            view_count : 0,
         }),
+
+        computed: {
+            ...mapGetters(['getToken', 'getUserData'])
+        },
         methods: {
     
             getAllCategories() {
@@ -22,6 +28,17 @@ import axios from 'axios';
                     console.log(this.post.media);
                 })
             },
+
+            getViewCount() {
+                let data = {
+                    user_id : this.getUserData.id,
+                    post_id : this.post_id,
+                };
+
+                axios.post('http://localhost:8000/api/action-log',data).then((response) => {
+                    this.view_count = response.data.count;
+                })
+            }
          
         },
         beforeMount() {
@@ -31,6 +48,8 @@ import axios from 'axios';
         mounted() {
             this.getAllCategories();
             this.getPostDetail();
+            this.getViewCount();
+            
         },
 
       

@@ -3,6 +3,9 @@
         <NavBar :categories="categories"/>
         <div style="max-width: 700px; margin: auto;">
             <div class="card my-5 p-3 shadow-sm">
+                <div class="row" v-if="!loginStatus">
+                    <div class="alert alert-warning">Credential not match !</div>
+                </div>
                 <form action="" class="py-3">
                 <div class="row">
                     <div class="form-group">

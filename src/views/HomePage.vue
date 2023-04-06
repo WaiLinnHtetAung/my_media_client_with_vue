@@ -10,7 +10,7 @@
                             <div class="section-tittle mb-30"></div>
                         </div>
                     </div>
-                    <div class="row" >
+                    <div class="row" v-if="$store.state.userStatus == 'true'">
                         <div class="recent-active dot-style col-md-6 col-lg-4 col- dot-style"  v-for="(post,index) in posts" :key="index">
                             <div class="single-recent mb-100" @click="newsDetail(post.id)" style="cursor:pointer;" title="Read details">
                                 <div class="what-img" style="width:20rem; height: 15rem;">
@@ -25,6 +25,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row my-5 py-5" v-else>
+                        <h6 class="text-center">You must login first</h6>
                     </div>
                 </div>
             </div>

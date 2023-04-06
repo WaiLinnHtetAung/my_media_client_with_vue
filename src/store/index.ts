@@ -4,6 +4,7 @@ export default createStore({
   state: {
     userData : [],
     userToken : '',
+    userStatus : false,
   },
   getters: {
     getToken : state => state.userToken,
@@ -14,6 +15,7 @@ export default createStore({
   actions: {
     setToken : ({state}, value) => state.userToken = value,
     setUserData : ({state}, value) => state.userData = value,
+    userStatus: ({state}, value) => state.userStatus = value,
   },
   modules: {
   }

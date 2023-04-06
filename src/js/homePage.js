@@ -1,5 +1,6 @@
 import axios from "axios";
 import NavBar from '../views/NavBar.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'HomePage',
@@ -9,6 +10,10 @@ export default {
         posts : [],
         categories : [],
     }),
+
+    computed: {
+        ...mapGetters(['getToken', 'getUserData']),
+    },
 
     methods: {
         getAllPost() {
@@ -33,15 +38,25 @@ export default {
                     id: id,
                 }
             });
+        },
+        checkToken() {
+            if(this.getToken != null && this.getToken != undefined && this.getToken != '') {
+                this.$store.dispatch('userStatus', 'true');
+            } else {
+                this.$store.dispatch('userStatus', 'false');
+            }
         }
+
     },
 
     mounted() {
         this.getAllPost();
         this.getAllCategories();
+        this.checkToken();
     },
 
     created() {
-        console.log(this.$router.query);
+        console.log(this.$store.state.userStatus);
+        console.log(this.getToken);
     }
 }
