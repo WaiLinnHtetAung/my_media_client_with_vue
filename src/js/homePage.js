@@ -12,13 +12,13 @@ export default {
     }),
 
     computed: {
-        ...mapGetters(['getToken', 'getUserData']),
+        ...mapGetters(['getToken', 'getUserData', 'getAllPosts']),
     },
 
     methods: {
         getAllPost() {
             axios.get('http://localhost:8000/api/posts').then((response) => {
-                this.posts = response.data.posts;
+                this.$store.dispatch('postByCategory', response.data.posts);
             })
         }, 
 
@@ -53,10 +53,11 @@ export default {
         this.getAllPost();
         this.getAllCategories();
         this.checkToken();
+        this.posts = this.getAllPosts;
+
     },
 
-    created() {
-        console.log(this.$store.state.userStatus);
-        console.log(this.getToken);
-    }
+  
+
+    
 }

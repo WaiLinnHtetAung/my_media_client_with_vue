@@ -14,7 +14,7 @@
                         <div class="recent-active dot-style col-md-6 col-lg-4 col- dot-style"  v-for="(post,index) in posts" :key="index">
                             <div class="single-recent mb-100" @click="newsDetail(post.id)" style="cursor:pointer;" title="Read details">
                                 <div class="what-img" style="width:20rem; height: 15rem;">
-                                    <img :src="post.media[0].original_url" style="width:100%; height:100%;"  alt="" />
+                                    <img :src="post.media[0] ? post.media[0].original_url : ''" style="width:100%; height:100%;"  alt="" />
                                 </div>
                                 <div class="what-cap">
                                     <span class="color1">{{post.title}}</span>

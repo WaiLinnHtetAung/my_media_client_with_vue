@@ -127,13 +127,7 @@
 
             postByCategory(id) {
                 axios.post('http://localhost:8000/api/post-by-category', {id : id}).then((response) => {
-                    console.log(response)
-                    this.$router.push({
-                        name : 'homePage',
-                        query : {
-                            posts : 'this is post',
-                        }
-                    });
+                    this.$store.dispatch('postByCategory', response.data.posts);
                 })
             },
 
